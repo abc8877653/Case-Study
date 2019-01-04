@@ -1,0 +1,53 @@
+/*.center {
+	display:grid;
+	height: 100vh;
+	margin: 0;
+	place-items: center center;
+}*/
+
+.textcenter{
+	text-align:center;
+}
+
+
+.centerbox{
+    width: 100%;
+    text-align:center;
+}
+
+.box {
+	width: 25%;
+	margin:0 auto;
+}
+
+#indexBox {
+	width: 29%;
+	margin:0 auto;
+}
+
+.textleft {
+	text-align: left;
+}
+
+.labelandinput {
+	width: 32%;
+	text-align: left;
+	display: inline-block;
+}
+
+.table-style{
+    width: 60%;
+    margin:25px auto;
+}
+
+table, th, td {
+ border: 1px solid black;
+ border-collapse: collapse;
+ font-size: 0.7rem;
+ text-align:center;
+}
+
+th, td{
+    font-size: 1.5rem;
+    text-align:center;
+}
