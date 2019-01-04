@@ -1,0 +1,47 @@
+
+CREATE TABLE users(
+email VARCHAR(50) PRIMARY KEY,
+password VARCHAR(50) NOT NULL,
+fname VARCHAR(25) NOT NULL,
+lname VARCHAR(25) NOT NULL
+)
+
+CREATE TABLE jobs(
+jid NUMBER PRIMARY KEY,
+title VARCHAR2(50) NOT NULL,
+location VARCHAR(30) NOT NULL,
+jobtype varchar2(10) NOT NULL,
+annual_salary NUMBER(15,2) NOT NULL,
+description VARCHAR(300) NOT NULL,
+company VARCHAR(30) NOT NULL,
+email VARCHAR(50),
+CONSTRAINT fk_email FOREIGN KEY (email) REFERENCES users(email)
+)
+
+CREATE TABLE application(
+email REFERENCES users (email) ON DELETE CASCADE,
+jid REFERENCES jobs (jid) ON DELETE CASCADE,
+CONSTRAINT application_pk PRIMARY KEY (email, jid)
+)
+
+CREATE TABLE favorites(
+email REFERENCES users (email) ON DELETE CASCADE,
+jid REFERENCES jobs (jid) ON DELETE CASCADE,
+CONSTRAINT favorites_pk PRIMARY KEY (email, jid)
+)
+
+
+INSERT INTO users 
+VALUES('a@gmail.com', '111', 'First1', 'Last1');
+
+INSERT INTO users 
+VALUES('mark@gmail.com', 'mark123', 'Mark', 'Reeves');
+
+INSERT INTO users 
+VALUES('Celina@gmail.com', 'celina123', 'Celina', 'Hughes');
+
+INSERT INTO users 
+VALUES('Christina@gmail.com', 'christina123', 'Christina', 'Lawson');
+
+INSERT INTO users 
+VALUES('Michael@gmail.com', 'michael123', 'Michael ', 'Milner');
