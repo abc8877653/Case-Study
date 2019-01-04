@@ -1,4 +1,4 @@
-# Project Title
+# Case Study
 
 This project aims for allowing everyone to post and apply for entry level technology jobs using
 DAOs & Spring MVC Structure along with JDBC Connection. 
