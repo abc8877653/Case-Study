@@ -92,13 +92,17 @@ public class MainController {
 		Job job = (Job) session.getAttribute("job");
 		
 		//Check if user is applied to / watching the job
-		if (new ApplicationDAO().checkIfApplied(user.getEmail(), job.getJid()) && new WatchingDAO().checkIfWatching(user.getEmail(), job.getJid())) {
+		if (new ApplicationDAO().checkIfApplied(user.getEmail(), job.getJid())) {
 			// Check if the user created this job posting
 			if(user.getEmail().equals(job.getEmail())) {
-				mav.addObject("ApplicationStatus", "Cannot Apply To Own Posting");
+				mav.addObject("ApplicationStatus", "Cannot Apply / Watch Own Posting");
 				return mav;
 			}
-			// Apply user to job
+			//Remove from watching
+			if(new WatchingDAO().checkIfWatching(user.getEmail(), job.getJid())) {
+				new WatchingDAO().removeFromWatching(user.getEmail(), job.getJid());
+			}
+			//Add to application list
 			new ApplicationDAO().createNewApplicant(user.getEmail(), job.getJid());
 			mav.addObject("ApplicationStatus", "Application Successful");
 			return mav;
@@ -140,7 +144,7 @@ public class MainController {
 	/*
 	 * Unwatch a job
 	 */
-	@RequestMapping(value = "/unwatchJob", method = RequestMethod.POST)
+	@RequestMapping(value = "/unwatchJob")
 	public ModelAndView unwatchJob(HttpSession session) {
 		ModelAndView mav = new ModelAndView("jobPage");
 		if(session.getAttribute("user") == null) {
