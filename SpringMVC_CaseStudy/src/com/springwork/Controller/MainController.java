@@ -99,7 +99,7 @@ public class MainController {
 				return mav;
 			}
 			//Remove from watching
-			if(new WatchingDAO().checkIfWatching(user.getEmail(), job.getJid())) {
+			if(!new WatchingDAO().checkIfWatching(user.getEmail(), job.getJid())) {
 				new WatchingDAO().removeFromWatching(user.getEmail(), job.getJid());
 			}
 			//Add to application list
