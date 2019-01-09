@@ -74,6 +74,9 @@ public class MainController {
 		if(session.getAttribute("user") == null) {
 			return new ModelAndView("login");
 		}
+		if(session.getAttribute("jobList") != null) {
+			session.setAttribute("jobList", null);
+		}
 		return mav;
 	}
 	
